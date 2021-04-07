@@ -13,11 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentController {
   @Autowired StudentService studentService;
 
-  //  @Autowired
-  //  public StudentController(StudentService studentService) {
-  //    this.studentService = new StudentService();
-  //  }
-
   @GetMapping
   public List<Student> getStudents() {
     return studentService.getStudents();

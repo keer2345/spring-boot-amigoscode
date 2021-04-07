@@ -1,12 +1,14 @@
 package com.example.amigoscode.entity;
 
 import java.time.LocalDate;
+import java.time.Period;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table
@@ -21,14 +23,22 @@ public class Student {
 
   private String name;
   private String email;
-  private LocalDate dayOfMonth;
-  private int age;
+  private LocalDate birthday;
 
-  public Student(String name, String email, LocalDate dayOfMonth, int age) {
+  public Integer getAge() {
+    return Period.between(this.birthday, LocalDate.now()).getYears();
+  }
+
+  public void setAge(Integer age) {
+    this.age = age;
+  }
+
+  @Transient private Integer age;
+
+  public Student(String name, String email, LocalDate birthday) {
     this.name = name;
     this.email = email;
-    this.dayOfMonth = dayOfMonth;
-    this.age = age;
+    this.birthday = birthday;
   }
 
   public Long getId() {
@@ -55,28 +65,19 @@ public class Student {
     this.email = email;
   }
 
-  public LocalDate getDayOfMonth() {
-    return dayOfMonth;
+  public LocalDate getBirthday() {
+    return birthday;
   }
 
-  public void setDayOfMonth(LocalDate dayOfMonth) {
-    this.dayOfMonth = dayOfMonth;
+  public void setBirthday(LocalDate birthday) {
+    this.birthday = birthday;
   }
 
-  public int getAge() {
-    return age;
-  }
-
-  public void setAge(int age) {
-    this.age = age;
-  }
-
-  public Student(Long id, String name, String email, LocalDate dayOfMonth, int age) {
+  public Student(Long id, String name, String email, LocalDate birthday) {
     this.id = id;
     this.name = name;
     this.email = email;
-    this.dayOfMonth = dayOfMonth;
-    this.age = age;
+    this.birthday = birthday;
   }
 
   public Student() {}
@@ -92,8 +93,8 @@ public class Student {
         + ", email='"
         + email
         + '\''
-        + ", dayOfMonth="
-        + dayOfMonth
+        + ", birthday="
+        + birthday
         + ", age="
         + age
         + '}';

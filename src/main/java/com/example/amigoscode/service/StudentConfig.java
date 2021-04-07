@@ -16,9 +16,9 @@ public class StudentConfig {
   @Bean
   CommandLineRunner commandLineRunner(StudentRepo studentRepo) {
     return args -> {
-      Student aaa = new Student("aaa", "aaa@a.com", LocalDate.of(2000, JANUARY, 31), 21);
-      Student bbb = new Student("bbb", "bbb@a.com", LocalDate.of(2001, JANUARY, 31), 22);
-      Student ccc = new Student("ccd", "aaa@a.com", LocalDate.of(2002, JANUARY, 31), 23);
+      Student aaa = new Student("aaa", "aaa@a.com", LocalDate.of(2000, JANUARY, 31));
+      Student bbb = new Student("bbb", "bbb@a.com", LocalDate.of(2001, JANUARY, 31));
+      Student ccc = new Student("ccd", "aaa@a.com", LocalDate.of(2002, JANUARY, 31));
       studentRepo.saveAll(List.of(aaa, bbb, ccc));
     };
   }
